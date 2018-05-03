@@ -1,4 +1,5 @@
 未完，待更新。。。
+
 安装django
 #  创建项目
 django-admin startproject myblog
