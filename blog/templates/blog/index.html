@@ -1,0 +1,1 @@
+<!DOCTYPE html><html lang="en"><head>    <meta charset="UTF-8">    <title></title></head><body><a>    <h1><a href="">文章列表</a></h1></a>{% for article in articles %}    <a href="{% url 'blog:article_page' article.id %}">{{ article.title }}</a><br/>{%endfor %}</body></html>
