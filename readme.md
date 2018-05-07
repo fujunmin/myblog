@@ -36,12 +36,12 @@ HTML文件：
 - 在该目录下创建HTML文件
 - 在views.py中返回render()
 
-#DTL初步使用
+# DTL初步使用
 - render（）函数中支持一个**dict类型**参数
 - 该字典是后台传递到模板的参数，**键为参数名**
 - 在模板中使用**{{参数名}}**来直接使用
 
-#新建一个应用blog2，和blog一样，如何解决Templates的冲突问题
+# 新建一个应用blog2，和blog一样，如何解决Templates的冲突问题
 - 在templates目录下创建以**APP名为名称的目录**
 - 将**html文件**放入到新创建的目录下
 
@@ -52,7 +52,7 @@ HTML文件：
 django中models以**类**的形式表现
 它包含了一些**基本字段**以及数据的**一些行为**
 
-##ORM
+## ORM
 对象关系映射，实现了对象和数据库之间的映射，隐藏了数据访问的细节，不需要编写sql语句
 ##步骤
 - 在应用根目录下创建models.py，并引入models模块
@@ -63,7 +63,7 @@ django中models以**类**的形式表现
     - 字段即类里面的属性（变量）
     - attr = models.CharField(max_length=64)
 
-#生成数据表
+# 生成数据表
 步骤：
 - 命令行进入manage.py统计目录
 - 执行python manage.py makemigrations app名（可选）
@@ -96,11 +96,11 @@ fujunmindeMacBook-Pro:myblog fujunmin$
 备注：0001指的就是
 
 
-##查看并编辑db.sqlite3
+## 查看并编辑db.sqlite3
 - 使用第三方软件：SQLite Expert Personal
 - 轻量级，完全免费
 
-##呈现页面数据
+## 呈现页面数据
 - **后台步骤**
     - views.py中import models
     - article = models.Article.objects.get(pk=1) # 获取后台数据
@@ -110,22 +110,22 @@ fujunmindeMacBook-Pro:myblog fujunmin$
     - 模板可直接使用对象以及对象的“.”操作  {{article.title}}
 
 --------
-#什么是Admin？
+# 什么是Admin？
 admin是django自带的一个工鞥呢强大的自动化数据管理界面
 被授权的用户可直接在admin中管理数据库
 django提供了许多针对admin的定制功能
 
-#配置Admin
-##创建用户  ```python manage.py createsuperuser```   创建超级用户
+# 配置Admin
+## 创建用户  ```python manage.py createsuperuser```   创建超级用户
 admin/fujunmin
 - 修改语言：在settings.py下修改成 LANGUAGE_CODE = 'zh_Hans'    即可
 
-##配置应用
+## 配置应用
 - 在应用admin.py中引入自身的models模板（或里面的模型类）
 - 编辑admin.py：admin.site.register(models.Article)
 
 
-#修改数据默认显示名称（现在显示的是：Article object）
+# 修改数据默认显示名称（现在显示的是：Article object）
 
 步骤：
 - 在Article类下添加一个方法
@@ -133,23 +133,23 @@ admin/fujunmin
 - return self.title
 
 -----------
-#完善博客
+# 完善博客
 
-#博客页面设计：
-##页面概要
+# 博客页面设计：
+## 页面概要
 - 博客主页面
 - 博客文章内容页面
 - 博客撰写页面
 
-###博客主页面：
-####主页面内容
+### 博客主页面：
+#### 主页面内容
 - 文章标题列表，超链接
 - 发表博客按钮（超链接）
-####列表编写思路
+#### 列表编写思路
 - 取出数据库中所有文章对象
 - 将文章对象们打包成列表，传递到前端
 - 前端页面把文章以比包体超链接的形式逐个列出
-####模板for循环
+#### 模板for循环
 ```
 {%for xx in xxs}
 HTML语句
@@ -172,14 +172,14 @@ HTML语句
 
 ---
 
-#django模板中的超链接配置
+# django模板中的超链接配置
 
-#django中的超链接
-##超链接目标地址
+# django中的超链接
+## 超链接目标地址
 - href后面的**目标地址**
 - template中可以用 **“ {% url 'app_name:url_name' param %} ”**
 - 其中**app_name** 和 **url_name**都在**url**中配置
-##再配URL
+## 再配URL
 - url函数的名称参数
 - 跟urls，写在include（）的第二个参数位置，namespace='blog',  ```url(r'^blog/', include('blog.urls',namespace='blog'))```
 - 应用下则写在url（）的第三个参数位置，name='article'
@@ -188,13 +188,13 @@ HTML语句
 
 -----
 
-#博客撰写页面
-##页面内容
+# 博客撰写页面
+## 页面内容
 - 标题编辑栏
 - 文章内容编辑区域
 - 提交按钮
 
-##编辑响应函数
+## 编辑响应函数
 - 使用**request.POST['参数名']**获取表单数据
 - models.Article.objects.create(title,content) 创建对象
 
